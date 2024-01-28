@@ -9,11 +9,9 @@
   cicleLaia.setNumEdicions(6);
   console.log(cicleLaia.numEdicions); 
 */
-import {Modul} from "./modul.js";
-import {Cicle} from "./cicle.js";
 
 
-//CODI AL MOODLE
+//CODI DEL MOODLE
 let llistatCicles = [];
 
 function afegirCicle(){
