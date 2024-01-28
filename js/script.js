@@ -1,29 +1,3 @@
-class Cicle {
-    constructor(nom, voltes) {
-      this.nom = nom;
-      this.voltes = voltes;
-      this.numEdicions = 0; 
-    }
-
-    setNumEdicions() {
-      this.numEdicions++;
-
-    }
-
-  }
-  
-class Modul{
-    constructor(){
-        this.id = id;
-        this.nom = nom;
-        this.hores = hores;
-    }
-
-    toString(){
-        return `MP${this.id}. ${this.nom} (${this.hores}h)`;
-    }
-}
-
 /*
   const cicleLaia = new Cicle("JS de Laia", 0);
   
@@ -35,6 +9,8 @@ class Modul{
   cicleLaia.setNumEdicions(6);
   console.log(cicleLaia.numEdicions); 
 */
+import {Modul} from "./modul.js";
+import {Cicle} from "./cicle.js";
 
 
 //CODI AL MOODLE
