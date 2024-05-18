@@ -1,6 +1,5 @@
-class Modul{
-    constructor(){
-        //EDITAT PERQUE COINCIDEIXI AMB LES VARIABLES DONADES
+export class Modul{
+    constructor(modul_cicle,modul_num,modul_nom,modul_hores){
         this.modul_cicle = modul_cicle;
         this.modul_num = modul_num;
         this.modul_nom = modul_nom;
@@ -8,6 +7,6 @@ class Modul{
     }
 
     toString(){
-        return `MP${this.modul_num}.${this.modul_nom}(${this.modul_hores}h)`;
+        return `MP${this.modul_num}. ${this.modul_nom}(${this.modul_hores}h)`;
     }
 }

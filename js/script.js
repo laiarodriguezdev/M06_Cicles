@@ -1,15 +1,5 @@
-/*
-  const cicleLaia = new Cicle("JS de Laia", 0);
-  
-  console.log(cicleLaia); 
-
-  cicleLaia.incrementarEdicions();
-  console.log(cicleLaia.numEdicions); 
-
-  cicleLaia.setNumEdicions(6);
-  console.log(cicleLaia.numEdicions); 
-*/
-
+import { Cicle } from "./cicle";
+import { Modul } from "./modul";
 
 //CODI DEL MOODLE
 let llistatCicles = [];
@@ -27,8 +17,10 @@ function afegirCicle(){
         //Afegim el cicle al llistat
         llistatCicles.push(cicle);
     }else{
-        //Editar cicle
-
+        //Editar cicle -------- FET PER RECUPERACIÓ
+        let llistaEditada = parseInt(document.getElementById("editCicle").value);
+        llistatCicles[llistaEditada].setNumEdicions(nom, categoria, numAlumnes, abreviatura);
+        console.log(llistatCicles[llistaEditada])
     }
     
     //Actualitzem el selector
