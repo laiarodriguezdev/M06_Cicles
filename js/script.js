@@ -1,8 +1,14 @@
-import { Cicle } from "./cicle";
-import { Modul } from "./modul";
+import { Cicle } from "./Cicle.js";
+import { Modul } from "./Modul.js";
 
 //CODI DEL MOODLE
 let llistatCicles = [];
+
+let btnAfegirCicle = document.getElementById("btnAfegirCicle");
+let btnAfegirModul = document.getElementById("btnAfegirModul");
+
+btnAfegirCicle.addEventListener("click", afegirCicle);
+btnAfegirModul.addEventListener("click", afegirModul);
 
 function afegirCicle(){
     let nom = document.getElementById("cicle_nom").value;
@@ -10,12 +16,13 @@ function afegirCicle(){
     let numAlumnes = document.getElementById("cicle_alumnes").value;
     let abreviatura = document.getElementById("cicle_abr").value;
 
-    let cicle = {nom: nom, categoria: categoria, numAlumnes: numAlumnes, abreviatura: abreviatura}
-    console.log(cicle);
+    let cicle = new Cicle(nom, categoria, numAlumnes, abreviatura);
+    console.log(cicle.toString());
 
     if(document.getElementById("editCicle").value === "-1"){
         //Afegim el cicle al llistat
         llistatCicles.push(cicle);
+        console.log(cicle.toString());
     }else{
         //Editar cicle -------- FET PER RECUPERACIÓ
         let llistaEditada = parseInt(document.getElementById("editCicle").value);
@@ -41,7 +48,8 @@ function afegirModul(){
     let modul_num = document.getElementById("modul_num").value;
     let modul_hores = document.getElementById("modul_hores").value;
 
-    let modul = {cicle: cicle, nom: modul_nom, num: modul_num, hores: modul_hores}
+    let modul = new Modul(llistatCicles[cicle], modul_nom, modul_num, modul_hores);
+    llistatCicles[cicle].setModuls(modul);
     console.log(modul);
 
     //Printem la llista
@@ -63,12 +71,24 @@ function printLlistat (llistat){
                     <button type="button" onClick="removeCicle(${index})" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Eliminar</button>
                     <button type="button" onClick="editCicle(${index})" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Editar</button>
                     <button type="button" onClick="calculHores(${index})" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Càlcul hores</button>
-
-
                 </div>`;
     });
 
     document.getElementById("llistat").innerHTML=str;
+
+    llistat.forEach(function (element, index) {
+        document.getElementById(`btnRemoveCicle_${index}`).addEventListener("click", function () {
+            removeCicle(index);
+        });
+
+        document.getElementById(`btnEditCicle_${index}`).addEventListener("click", function () {
+            editCicle(index);
+        });
+
+        document.getElementById(`btnCalculHores_${index}`).addEventListener("click", function () {
+            calculateHours(index);
+        });
+    });
 }
 
 //Funció per actualitzar el selector de cicles cada vegada que afegim un cicle
@@ -83,9 +103,10 @@ function actualitzarSelector(){
     });
 }
 
-//Funció per eliminar un cicle
+//Funció per eliminar un cicle -------- FET PER RECUPERACIÓ
 function removeCicle(i){
-
+    llistatCicles.splice(i, 1);
+    printLlistat(llistatCicles);
 }
 
 //Funció per editar un cicle
@@ -109,4 +130,9 @@ function netejarFormularis(){
     for (let i=0; i < selects.length; i++) {
         selects[i].value = 0;
     }
+}
+
+//Funció per calcular hores del cicle -------- FET PER RECUPERACIÓ
+function calculateHours(i){
+    alert(`Les hores totals del cicle ${llistatCicles[i].nom} son: ${llistatCicles[i].calcHores()}h`)
 }
