@@ -135,5 +135,5 @@ function netejarFormularis(){
 //Funció per calcular hores del cicle -------- FET PER RECUPERACIÓ
 function calculHores(i){
     console.log(llistatCicles[i].calcHores());
-    alert(`Les hores totals del cicle ${llistatCicles[i].nom} son: ${llistatCicles[i].calcHores().toString()}h`)
+    alert(`Les hores totals del cicle ${llistatCicles[i].nom} son: ${llistatCicles[i].calcHores()}h`)
 }

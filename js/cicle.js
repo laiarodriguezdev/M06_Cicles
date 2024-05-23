@@ -27,15 +27,15 @@ export class Cicle {
         this.moduls.push(modul);
         this.moduls.sort((a, b) => a - b);
     }
+
     calcHores() {
         let totalHores = 0;
         for (const modul of this.moduls) {
-            totalHores += parseInt(modul.hores);
+            totalHores += parseInt(modul.modul_hores);
         }
-        console.log("CALCHORES: " + totalHores);
-        console.log("CALCHORESstring: " + totalHores.toString());
-        return totalHores.toString();
+        return totalHores;
     }
+
     toString() {
         let finalString = `Cicle: abreviatura: ${this.abreviatura.toUpperCase()}, nom: ${this.nom}\n`;
         finalString += `Categoria: ${this.categoria}\n`;
