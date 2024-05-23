@@ -17,12 +17,12 @@ function afegirCicle(){
     let abreviatura = document.getElementById("cicle_abr").value;
 
     let cicle = new Cicle(nom, categoria, numAlumnes, abreviatura);
-    console.log(cicle.toString());
+    // console.log(cicle.toString());
 
     if(document.getElementById("editCicle").value === "-1"){
         //Afegim el cicle al llistat
         llistatCicles.push(cicle);
-        console.log(cicle.toString());
+        // console.log(cicle.toString());
     }else{
         //Editar cicle -------- FET PER RECUPERACIÓ
         let llistaEditada = parseInt(document.getElementById("editCicle").value);
@@ -50,7 +50,7 @@ function afegirModul(){
 
     let modul = new Modul(llistatCicles[cicle], modul_nom, modul_num, modul_hores);
     llistatCicles[cicle].setModuls(modul);
-    console.log(modul);
+    // console.log(modul);
 
     //Printem la llista
     printLlistat(llistatCicles);
@@ -68,9 +68,9 @@ function printLlistat (llistat){
                     <h6 class="text-gray-700">${element.categoria}</h6>
                     <p class="font-normal text-gray-700">Num d'alumnes: ${element.numAlumnes}</p>
 
-                    <button type="button" onClick="removeCicle(${index})" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Eliminar</button>
-                    <button type="button" onClick="editCicle(${index})" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Editar</button>
-                    <button type="button" onClick="calculHores(${index})" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Càlcul hores</button>
+                    <button type="button" id="btnRemoveCicle_${index}" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Eliminar</button>
+                    <button type="button" id="btnEditCicle_${index}" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Editar</button>
+                    <button type="button" id="btnCalculHores_${index}" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Càlcul hores</button>
                 </div>`;
     });
 
@@ -86,7 +86,7 @@ function printLlistat (llistat){
         });
 
         document.getElementById(`btnCalculHores_${index}`).addEventListener("click", function () {
-            calculateHours(index);
+            calculHores(index);
         });
     });
 }
@@ -133,6 +133,7 @@ function netejarFormularis(){
 }
 
 //Funció per calcular hores del cicle -------- FET PER RECUPERACIÓ
-function calculateHours(i){
-    alert(`Les hores totals del cicle ${llistatCicles[i].nom} son: ${llistatCicles[i].calcHores()}h`)
+function calculHores(i){
+    console.log(llistatCicles[i].calcHores());
+    alert(`Les hores totals del cicle ${llistatCicles[i].nom} son: ${llistatCicles[i].calcHores().toString()}h`)
 }

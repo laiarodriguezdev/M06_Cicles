@@ -32,7 +32,9 @@ export class Cicle {
         for (const modul of this.moduls) {
             totalHores += parseInt(modul.hores);
         }
-        return totalHores;
+        console.log("CALCHORES: " + totalHores);
+        console.log("CALCHORESstring: " + totalHores.toString());
+        return totalHores.toString();
     }
     toString() {
         let finalString = `Cicle: abreviatura: ${this.abreviatura.toUpperCase()}, nom: ${this.nom}\n`;
